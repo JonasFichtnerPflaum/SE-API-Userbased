@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/cocktail")
 class UserbasedController (private val userbasedRepository: UserbasedRepository) {
 
     @ExceptionHandler(NoSuchElementException::class)
@@ -19,8 +19,8 @@ class UserbasedController (private val userbasedRepository: UserbasedRepository)
     fun handleBadRequest(e: IllegalArgumentException): ResponseEntity<String> =
         ResponseEntity(e.message, HttpStatus.BAD_REQUEST)
 //
-    @GetMapping("/shoppinglist/id/")
-    fun getShoppinglistById(@PathVariable id: String): ResponseEntity<List<UserBasedData>>{
+    @GetMapping("/")
+    fun getShoppinglistById(): ResponseEntity<List<UserBasedData>>{
         return ResponseEntity.ok(userbasedRepository.findAll())
     }
 

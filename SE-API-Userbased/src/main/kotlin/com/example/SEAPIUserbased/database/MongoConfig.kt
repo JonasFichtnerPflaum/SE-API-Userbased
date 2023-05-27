@@ -18,7 +18,7 @@ class MongoConfig : AbstractMongoClientConfiguration() {
     }
 
     override fun mongoClientSettings(): MongoClientSettings {
-        val connectionString = ConnectionString("mongodb+srv://SE:1234@cluster0.hfsleow.mongodb.net/?retryWrites=true&w=majority")
+        val connectionString = ConnectionString("mongodb+srv://testSe:test@cluster0.op0zm27.mongodb.net/?retryWrites=true&w=majority")//"mongodb+srv://SE:1234@cluster0.hfsleow.mongodb.net/?retryWrites=true&w=majority"
         return MongoClientSettings.builder()
             .applyConnectionString(connectionString)
             .build()
