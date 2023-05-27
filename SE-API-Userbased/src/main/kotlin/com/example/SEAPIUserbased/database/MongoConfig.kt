@@ -18,14 +18,14 @@ class MongoConfig : AbstractMongoClientConfiguration() {
     }
 
     override fun mongoClientSettings(): MongoClientSettings {
-        val connectionString = ConnectionString("mongodb+srv://testSe:test@cluster0.op0zm27.mongodb.net/?retryWrites=true&w=majority")//"mongodb+srv://SE:1234@cluster0.hfsleow.mongodb.net/?retryWrites=true&w=majority"
+        val connectionString = ConnectionString("mongodb+srv://SE:test@cluster0.hfsleow.mongodb.net/?retryWrites=true&w=majority")
         return MongoClientSettings.builder()
             .applyConnectionString(connectionString)
             .build()
     }
 
     @Bean
-    override fun mongoTemplate (databaseFactory: MongoDatabaseFactory, converter: MappingMongoConverter): MongoTemplate {
+    override fun mongoTemplate(databaseFactory: MongoDatabaseFactory, converter: MappingMongoConverter): MongoTemplate {
         return MongoTemplate(MongoClients.create(mongoClientSettings()), "mixnfix")
     }
 }

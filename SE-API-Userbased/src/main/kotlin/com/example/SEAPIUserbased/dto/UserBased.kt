@@ -4,8 +4,10 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
 @Document
-data class FavoritCocktail (
+data class UserBased(
     @Id val _id: String?,
     val userId: String?,
-    val favoritCocktail: Array<String?>?
+    val type: String?,
+    val list: Array<String?>?
 )
+
