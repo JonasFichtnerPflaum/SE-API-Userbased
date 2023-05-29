@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api")
 class UserBasedController (private val userbasedRepository: UserBasedRepository, private val userbasedService: UserBasedService) {
 
-    @ExceptionHandler(NoSuchElementException::class)
+     @ExceptionHandler(NoSuchElementException::class)
     fun handleNotFound(e: NoSuchElementException): ResponseEntity<String> =
         ResponseEntity(e.message, HttpStatus.NOT_FOUND)
 
@@ -19,35 +19,35 @@ class UserBasedController (private val userbasedRepository: UserBasedRepository,
     fun handleBadRequest(e: IllegalArgumentException): ResponseEntity<String> =
         ResponseEntity(e.message, HttpStatus.BAD_REQUEST)
 
-    @GetMapping("/shoppinglist/{id}")
-    fun getshoppinglist(@PathVariable id: String): ResponseEntity<UserBased>{
+    @GetMapping("/shoppinglist")
+    fun getshoppinglist(@RequestParam id: String): ResponseEntity<UserBased>{
         return ResponseEntity.ok(userbasedRepository.getshoppinglist(id))
     }
 
-    @GetMapping("/favoritlist/{id}")
-    fun getfavoritlist(@PathVariable id: String): ResponseEntity<UserBased>{
+    @GetMapping("/favoritlist")
+    fun getfavoritlist(@RequestParam id: String): ResponseEntity<UserBased>{
         return ResponseEntity.ok(userbasedRepository.getfavoritlist(id))
     }
 
-    @PostMapping("/favoritlist/{id}/add/{cocktail}")
-    fun addtofavoritlist(@PathVariable id: String, @PathVariable cocktail: String){
+    @PostMapping("/favoritlist/add")
+    fun addtofavoritlist(@RequestParam id: String, @RequestParam cocktail: String){
         val savedCocktail = userbasedService.addentrytofavoritlist(id,cocktail)
 
     }
 
-    @PostMapping("/shoppinglist/{id}/add/{ingredient}")
-    fun addtoshoppinglist(@PathVariable id: String, @PathVariable ingredient: String) {
+    @PostMapping("/shoppinglist/add")
+    fun addtoshoppinglist(@RequestParam id: String, @RequestParam ingredient: String) {
         val savedCocktail = userbasedService.addentrytoshoppinglist(id, ingredient)
     }
 
-    @DeleteMapping("favoritlist/{id}/remove/{cocktail}")
-    fun removeformfavoritlist(@PathVariable id: String, @PathVariable cocktail: String): ResponseEntity<String> {
+    @DeleteMapping("favoritlist/remove")
+    fun removeformfavoritlist(@RequestParam id: String, @RequestParam cocktail: String): ResponseEntity<String> {
         userbasedService.removefromfavoritlist(id, cocktail)
         return ResponseEntity.ok("String value removed successfully.")
     }
 
-    @DeleteMapping("shoppinglist/{id}/remove/{ingredient}")
-    fun removefromshoppinglist(@PathVariable id: String, @PathVariable ingredient: String): ResponseEntity<String> {
+    @DeleteMapping("shoppinglist/remove")
+    fun removefromshoppinglist(@RequestParam id: String, @RequestParam ingredient: String): ResponseEntity<String> {
         userbasedService.removefromshoppinglist(id, ingredient)
         return ResponseEntity.ok("String value removed successfully.")
     }
