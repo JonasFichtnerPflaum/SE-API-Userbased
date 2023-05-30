@@ -19,6 +19,9 @@ class UserBasedController (private val userbasedRepository: UserBasedRepository,
     fun handleBadRequest(e: IllegalArgumentException): ResponseEntity<String> =
         ResponseEntity(e.message, HttpStatus.BAD_REQUEST)
 
+
+
+
     @GetMapping("/shoppinglist")
     fun getshoppinglist(@RequestParam id: String): ResponseEntity<UserBased>{
         return ResponseEntity.ok(userbasedRepository.getshoppinglist(id))
