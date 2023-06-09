@@ -20,7 +20,7 @@ class MongoDbConfig (private val env: Environment) {
         val settings = MongoClientSettings.builder()
             .applyConnectionString(ConnectionString(env.getProperty("mongodb.connectionString")!!))
             .build()
-        return MongoTemplate(MongoClients.create(settings), "test1")
+        return MongoTemplate(MongoClients.create(settings), "mixnfix")
     }
 }
 
