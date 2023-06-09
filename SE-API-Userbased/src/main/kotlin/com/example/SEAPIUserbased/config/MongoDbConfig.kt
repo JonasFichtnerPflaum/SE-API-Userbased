@@ -17,7 +17,6 @@ class MongoDbConfig (private val env: Environment) {
 
     @Bean(name = ["userBasedTemplate"])
     fun cocktailDbMongoTemplate(): MongoTemplate {
-
         val settings = MongoClientSettings.builder()
             .applyConnectionString(ConnectionString(env.getProperty("mongodb.connectionString")!!))
             .build()
