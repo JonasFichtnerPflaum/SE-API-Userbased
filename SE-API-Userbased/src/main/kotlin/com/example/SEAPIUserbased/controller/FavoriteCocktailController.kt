@@ -25,20 +25,20 @@ class FavoriteCocktailController(private val favoriteCocktailService: FavoriteCo
     }
 
     @PostMapping("")
-    fun postfavoritcocktail(@RequestParam userId: String): FavoriteCocktailDto{
-        return favoriteCocktailService.createFavoriteCocktailList(userId)
+    fun postfavoritcocktail(@RequestParam userId: String): ResponseEntity<FavoriteCocktailDto>{
+        return ResponseEntity.ok(favoriteCocktailService.createFavoriteCocktailList(userId))
 
     }
 
     @DeleteMapping("/listelement")
     fun deletefavoritlistelement(@RequestParam userId: String,
-                                 @RequestParam cocktailId: String): ResponseEntity<Any>{
-        return favoriteCocktailService.deleteCocktail(userId, cocktailId)
+                                 @RequestParam cocktailId: String): ResponseEntity<FavoriteCocktailDto>{
+        return ResponseEntity.ok(favoriteCocktailService.deleteCocktail(userId, cocktailId))
     }
 
     @PostMapping("/listelement")
     fun postfavoritlistelement(@RequestParam userId: String,
-                               @RequestBody cocktail: Cocktail): ResponseEntity<Any>{
-        return favoriteCocktailService.addCocktail(userId, cocktail)
+                               @RequestBody cocktail: Cocktail): ResponseEntity<FavoriteCocktailDto>{
+        return ResponseEntity.ok(favoriteCocktailService.addCocktail(userId, cocktail))
     }
 }
