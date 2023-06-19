@@ -1,10 +1,6 @@
 package com.example.SEAPIUserbased.controller
 
 import com.example.SEAPIUserbased.Service.ShoppingListService
-import com.example.SEAPIUserbased.dto.Cocktail
-import com.example.SEAPIUserbased.dto.FavoriteCocktailDto
-//import com.example.SEAPIUserbased.database.UserBasedRepository
-//import com.example.SEAPIUserbased.database.UserBasedRepositoryCocktailList
 import com.example.SEAPIUserbased.dto.ShoppingListDto
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -46,10 +42,5 @@ class ShoppingListController (
                                @RequestParam element: String
     ): ResponseEntity<Any>{
         return shoppingListService.addElement(userId, element)
-    }
-
-    @PostMapping("/adduser")
-    fun addtofavoritlist(@RequestBody shoppinglist:ShoppingListDto){
-        val savedCocktail = shoppingListService.addUser(shoppinglist)
     }
 }
